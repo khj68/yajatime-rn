@@ -43,13 +43,13 @@ function IndexScreen(props: any): React.ReactElement {
     <>
       <View style={styles.topContainer}>
         <Image
-          style={{height: 50, width: 50}}
+          style={styles.titleImg}
           source={{
             uri: 'https://reactnative.dev/img/tiny_logo.png'
           }}
         />
-        <Text>심심할 때 뭐해?</Text>
-        <Text>야자타임</Text>
+        <Text style={styles.title}>심심할 때 뭐해?</Text>
+        <Text style={{fontWeight: 'bold', fontSize: 17, marginTop: 6}}>야자타임</Text>
       </View>
       <View style={styles.midContainer}>
           <TextInput
@@ -173,6 +173,14 @@ const styles = StyleSheet.create({
   },
   background: {
     backgroundColor: '#ffffff',
+  },
+  title: {
+    marginTop: 40,
+  },
+  titleImg: {
+    height: 50, 
+    width: 50,
+    marginTop: 70,
   }
 });
 

@@ -39,43 +39,46 @@ DefaultTheme.colors.background = '#ffffff';
 
 function SchoolScreen(props: any): React.ReactElement {
   const [grade, setGrade] = useState(0);
-  const [school, setSchool] = useState('');
+  const [search, setSearch] = useState('');
+  const [school, setSchool] = useState('학교');
   
   return(
     <>
-      <View style={styles.topContainer}>
-        <Text style={styles.topText}>학교 선택</Text>
-      </View>
       <View style={styles.midContainer}>
+        <Text style={styles.miniTitle}>학교 선택</Text>
         <View style={styles.choiceContainer}>
-            <TouchableOpacity style={styles.choice}>
+            <TouchableOpacity style={styles.choice} onPress={() => setSchool('중학교')}>
               <Text style={styles.btnText}>중학교</Text>            
             </TouchableOpacity>
-            <TouchableOpacity style={styles.choice}>
+            <TouchableOpacity style={styles.choice} onPress={() => setSchool('고등학교')}>
               <Text style={styles.btnText}>고등학교</Text>            
             </TouchableOpacity>
         </View>
         <View>
-          <Text style={{marginRight: '75%', marginTop: 25}}>학년</Text>
+          <Text style={styles.miniTitle}>학년</Text>
         </View>
-        <Picker
-          style={{height:50, width: '86%', borderColor:'grey', borderWidth:1}}
-          selectedValue={grade}
-          onValueChange={(itemValue, itemIndex) => {setGrade(itemValue); console.log('[LOG]: ' + grade+'학년')}}
-        >
-          <Picker.Item label='1학년' value={1} />
-          <Picker.Item label='2학년' value={2} />
-          <Picker.Item label='3학년' value={3} />
-        </Picker>
-        <View style={{marginRight: '75%', marginTop: 25}}>
-          <Text>학교</Text>
+        <View style={styles.midContent}>
+          <Picker
+            style={{height:50, width: '86%', borderColor:'grey', borderWidth:1}}
+            selectedValue={grade}
+            onValueChange={(itemValue, itemIndex) => {setGrade(itemValue); console.log('[LOG]: ' + grade+'학년')}}
+          >
+            <Picker.Item label='1학년' value={1} />
+            <Picker.Item label='2학년' value={2} />
+            <Picker.Item label='3학년' value={3} />
+          </Picker>
         </View>
-        <TextInput
-          style={styles.textInput}
-          placeholder='학교를 검색하세요.'
-          paddingLeft={15}
-          onChangeText={(text) => {setSchool(text);console.log(text)}}
-        />
+        <View>
+          <Text style={styles.miniTitle}>{school}</Text>
+        </View>
+        <View style={styles.midContent}>
+          <TextInput
+            style={styles.textInput}
+            placeholder='학교를 검색하세요.'
+            paddingLeft={15}
+            onChangeText={(text) => {setSearch(text);console.log(text)}}
+          />
+        </View>
       </View>
       <View style={styles.bottomContainer}>
         <TouchableOpacity style={styles.btnNext} onPress={() => props.navigation.navigate('Term')}>
@@ -92,12 +95,12 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     // justifyContent: 'center',
     backgroundColor: 'white',
-    marginLeft: 18,
+    marginLeft: 35,
     marginTop: 16,
   },
   midContainer:{
     flex: 6,
-    alignItems: 'center',
+    // alignItems: 'center',
     // justifyContent: 'center',
     // backgroundColor: 'white',
   },
@@ -111,6 +114,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 15,
   },
   textInput: {
     height: 40,
@@ -169,6 +173,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#4A655A',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  miniTitle: {
+    marginTop: 25, 
+    marginLeft: 35,
+    fontWeight: 'bold',
+  },
+  midContent: {
+    alignItems:'center'
   }
 });
 
