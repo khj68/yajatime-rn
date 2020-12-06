@@ -16,12 +16,18 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { 
+  DefaultTheme,
+  NavigationContainer 
+} from '@react-navigation/native';
+
 import { createStackNavigator } from '@react-navigation/stack';
 
 import SwitchScreen from './component/switch';
 import JoinScreen from './component/join';
 import MainScreen from './component/main';
+
+DefaultTheme.colors.background = '#ffffff';
 
 const Stack = createStackNavigator();
 
@@ -30,7 +36,7 @@ function App(): React.ReactElement {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Switch" component={SwitchScreen} />
-        <Stack.Screen name="Join" component={JoinScreen} />
+        <Stack.Screen name="Join" component={JoinScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="Main" component={MainScreen} />
       </Stack.Navigator>
     </NavigationContainer>
