@@ -9,6 +9,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button,
   Image,
   TextInput,
   TouchableOpacity,
@@ -26,13 +27,18 @@ import {
   DefaultTheme,
   NavigationContainer
 } from '@react-navigation/native';
+
 import { createStackNavigator } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/AntDesign';
+
+import SchoolScreen from './school';
 
 DefaultTheme.colors.background = '#ffffff';
 
 const JoinStack = createStackNavigator();
+const SignStack = createStackNavigator();
 
-function IndexScreen(): React.ReactElement {
+function IndexScreen(props: any): React.ReactElement {
   return(
     <>
       <View style={styles.topContainer}>
@@ -58,7 +64,7 @@ function IndexScreen(): React.ReactElement {
             secureTextEntry={true}
             paddingLeft={15}
           />
-          <TouchableOpacity style={styles.btnSignIn}>
+          <TouchableOpacity style={styles.btnSignIn} onPress={() => props.navigation.replace('Main')}>
             <Text style={styles.btnText}>로그인</Text>
           </TouchableOpacity>
       </View>
@@ -66,7 +72,7 @@ function IndexScreen(): React.ReactElement {
         <TouchableOpacity style={styles.btnSignUp}>
           <Text>아이디/비밀번호 찾기</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btnSignUp}>
+        <TouchableOpacity style={styles.btnSignUp} onPress={() => props.navigation.navigate('School')}>
           <Text>회원가입</Text>
         </TouchableOpacity>
       </View>
@@ -74,11 +80,7 @@ function IndexScreen(): React.ReactElement {
   );
 }
 
-function SchoolScreen(): React.ReactElement {
-  return(
-    <Text>School Screen</Text>
-  );
-}
+
 
 function TermScreen(): React.ReactElement {
   return(
@@ -98,9 +100,18 @@ function CompleteScreen(): React.ReactElement {
   );
 }
 
-function JoinScreen(): React.ReactElement {
+function JoinScreen(props: any): React.ReactElement {
   return (
-    <JoinStack.Navigator >
+    <JoinStack.Navigator screenOptions={{
+      title: '회원가입', 
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => props.navigation.reset({index: 0, routes: [{ name: 'Index' }]})}
+          style={{marginRight: 10}}
+        >
+          <Icon name='close' size={23} color='#000000'/>
+        </TouchableOpacity>)
+    }}>
       <JoinStack.Screen name="Index" component={IndexScreen} options={{ headerShown: false }}/>
       <JoinStack.Screen name="School" component={SchoolScreen} />
       <JoinStack.Screen name="Term" component={TermScreen} />
@@ -143,7 +154,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 20,
     marginTop: 4,
-    backgroundColor: '#00287e',
+    backgroundColor: '#4A655A',
     alignItems: 'center',
     justifyContent: 'center',
   },
