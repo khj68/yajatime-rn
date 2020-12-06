@@ -24,7 +24,7 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 
 import SwitchScreen from './component/switch';
-import JoinScreen from './component/join';
+import JoinScreen from './component/join/join';
 import MainScreen from './component/main';
 
 DefaultTheme.colors.background = '#ffffff';

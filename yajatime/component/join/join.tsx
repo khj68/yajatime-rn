@@ -32,6 +32,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import SchoolScreen from './school';
+import TermScreen from './term';
+import DetailScreen from './detail';
 
 DefaultTheme.colors.background = '#ffffff';
 
@@ -57,7 +59,6 @@ function IndexScreen(props: any): React.ReactElement {
             placeholder='아이디'
             paddingLeft={15}
           />
-
           <TextInput
             style={styles.textInput} 
             placeholder='비밀번호'
@@ -81,18 +82,6 @@ function IndexScreen(props: any): React.ReactElement {
 }
 
 
-
-function TermScreen(): React.ReactElement {
-  return(
-    <Text>Term Screen</Text>
-  );
-}
-
-function DetailScreen(): React.ReactElement {
-  return(
-    <Text>Detail Screen</Text>
-  );
-}
 
 function CompleteScreen(): React.ReactElement {
   return(
